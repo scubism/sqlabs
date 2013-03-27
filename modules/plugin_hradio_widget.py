@@ -11,6 +11,6 @@ def hradio_widget(field, value, **attributes):
         button, label = row.elements('td')[0]
         button.attributes['_style'] = 'cursor:pointer;'
         label.attributes.update(_for=button.attributes['_id'],
-                                _style='cursor:pointer;')
+                                _style='cursor:pointer;display: inline;')
         inner.append(SPAN(button, ' ', label, _style='padding-right:10px;'))
     return DIV(*inner, **attributes)
