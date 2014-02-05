@@ -107,7 +107,7 @@ jQuery(document).ready(function() {
         
         if value:
             el = DIV(script_el,
-                     SPAN(SELECT(*[OPTION(v, _value=k) for (k, v) in field.requires.options()], value=value, _id='%s__aux' % self._el_id), _id=self._disp_el_id),
+                     SPAN(SELECT(*[OPTION(v, _value=k) for (k, v) in field.requires.options()], value=value, _id='%s__aux' % self._el_id, _onchange='jQuery("#%s").val(jQuery(this).val());' % self._hidden_el_id), _id=self._disp_el_id),
                      INPUT(_value=value, _type='hidden',
                            _name=field.name, _id=self._hidden_el_id,
                            requires=field.requires),
