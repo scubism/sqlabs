@@ -105,10 +105,18 @@ jQuery(document).ready(function() {
         
         select_el = self._get_select_el(self.trigger, value) if self.trigger else None
         
-        el = DIV(script_el,
-                 SPAN(select_el or self.default, _id=self._disp_el_id),
-                 INPUT(_value=value, _type='hidden',
-                       _name=field.name, _id=self._hidden_el_id,
-                       requires=field.requires),
-                 _id=self._el_id)
+        if value:
+            el = DIV(script_el,
+                     SPAN(SELECT(*[OPTION(v, _value=k) for (k, v) in field.requires.options()], value=value, _id='%s__aux' % self._el_id), _id=self._disp_el_id),
+                     INPUT(_value=value, _type='hidden',
+                           _name=field.name, _id=self._hidden_el_id,
+                           requires=field.requires),
+                     _id=self._el_id)
+        else:
+            el = DIV(script_el,
+                     SPAN(select_el or self.default, _id=self._disp_el_id),
+                     INPUT(_value=value, _type='hidden',
+                           _name=field.name, _id=self._hidden_el_id,
+                           requires=field.requires),
+                     _id=self._el_id)
         return el
