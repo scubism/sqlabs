@@ -80,7 +80,7 @@ class lazy_options_widget(SQLFORM.widgets.options):
         
         script_el = SCRIPT("""
 jQuery(document).ready(function() {
-    jQuery("body").bind("%(on_key)s", function(e, val) {
+    jQuery("body").on("%(on_key)s", function(e, val) {
         jQuery("#%(disp_el_id)s").html("%(default)s");
         jQuery("#%(hidden_el_id)s").val("");
         var query = {}
@@ -91,7 +91,7 @@ jQuery(document).ready(function() {
         }});
         
     });
-    jQuery("body").bind("%(off_key)s", function(e) {
+    jQuery("body").on("%(off_key)s", function(e) {
         jQuery("#%(disp_el_id)s").html("%(default)s");
         jQuery("#%(hidden_el_id)s").val("");
     });
